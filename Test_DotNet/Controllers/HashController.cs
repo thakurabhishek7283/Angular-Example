@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Test_DotNet.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/[controller]/")]
     [ApiController]
     public class HashController : Controller
     {
@@ -20,11 +22,16 @@ namespace Test_DotNet.Controllers
             using (var hash = SHA256.Create())
             {
                 byte[] hashedBytes = hash.ComputeHash(inputBytes);
-                
+                 StringBuilder hashedString = new StringBuilder();
+                for (int i = 0; i < hashedBytes.Length; i++)
+                {
+                    hashedString.Append(hashedBytes[i].ToString("x2"));
+                }
+                string reshash = hashedString.ToString().ToUpper();
                 // Return a HashResponse Object which contains the hashString (alphanumeric, without '-') converted from hashedBytes
                 var response = new HashResponse
                 {
-                    Hash = hashedBytes
+                    Hash = reshash
                 };
                 return new JsonResult(response);
             }

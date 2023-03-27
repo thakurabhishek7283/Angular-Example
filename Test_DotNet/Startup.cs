@@ -32,15 +32,15 @@ namespace Test_DotNet
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Test_DotNet", Version = "v1" });
             });
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder.WithOrigins("http://localhost:50702", "http://localhost:4200")
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
-            });
-
+            // services.AddCors(options =>
+            // {
+            //     options.AddPolicy("CorsPolicy",
+            //         builder => builder.WithOrigins("http://localhost:50702", "http://localhost:4200")
+            //         .AllowAnyMethod()
+            //         .AllowAnyHeader()
+            //         .AllowCredentials());
+            // });
+// 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
